@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <h2>Hyper news</h2>
+    <form method="get">{% csrf_token %}
+        <p>News search:</p>
+        <input type="text" name="q" size="50">
+        <button type="submit">Search</button>
+    </form>
+    {% regroup news_list|dictsortreversed:"created" by created|slice:":10" as created_list %}
+    {% for new_list in created_list %}
+        <h4>{{new_list.grouper}}</h4>
+        <ul>
+        {% for news in new_list.list %}
+            <li><a href="/news/{{ news.link }}/">{{ news.title }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    <br>
+    <a href="/news/create/">Create</a>
+</body>
+</html>

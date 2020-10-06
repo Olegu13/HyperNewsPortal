@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page News</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <h2>{{ news.title }}</h2>
+    <p>{{ news.created }}</p>
+    <p>{{ news.text }}</p>
+    <br>
+    <a href="/news/">Main page</a>
+</body>
+</html>
